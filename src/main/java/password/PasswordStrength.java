@@ -1,5 +1,5 @@
 package password;
 
 public enum PasswordStrength {
-    STRONG,
+    STRONG, NORMAL
 }
