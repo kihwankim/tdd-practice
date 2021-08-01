@@ -4,6 +4,7 @@ public class PasswordStrengthMeter {
     private static final int MIN_LEN_OF_PASSWORD = 8;
 
     public PasswordStrength meter(String s) {
+        if (s == null) return PasswordStrength.INVALID;
         if (s.length() < MIN_LEN_OF_PASSWORD) {
             return PasswordStrength.NORMAL;
         }

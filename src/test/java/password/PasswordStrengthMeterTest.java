@@ -48,4 +48,17 @@ class PasswordStrengthMeterTest {
         // then
         assertEquals(PasswordStrength.NORMAL, result);
     }
+
+    @Test
+    @DisplayName("값이 없는 경우")
+    void nullInput_Then_Invalid() throws Exception {
+        // given
+        String passwordExceptNumber = null;
+
+        // when
+        PasswordStrength result = this.meter.meter(passwordExceptNumber);
+
+        // then
+        assertEquals(PasswordStrength.INVALID, result);
+    }
 }
