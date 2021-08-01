@@ -74,4 +74,17 @@ class PasswordStrengthMeterTest {
         // then
         assertEquals(PasswordStrength.INVALID, result);
     }
+
+    @Test
+    @DisplayName("대문자를 포함하지 않고 나머지 조건을 충족하는 경우")
+    void meetsOtherCriteria_except_for_Uppercase_Then_Nomal() throws Exception {
+        // given
+        String password = "ab12!@df";
+
+        // when
+        PasswordStrength result = this.meter.meter(password);
+
+        // then
+        assertEquals(PasswordStrength.NORMAL, result);
+    }
 }

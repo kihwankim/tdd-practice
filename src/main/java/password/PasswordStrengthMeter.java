@@ -10,6 +10,7 @@ public class PasswordStrengthMeter {
         }
 
         if (!isContainsNum(s)) return PasswordStrength.NORMAL;
+        if (!isContainingUppercase(s)) return PasswordStrength.NORMAL;
 
         return PasswordStrength.STRONG;
     }
@@ -20,6 +21,16 @@ public class PasswordStrengthMeter {
                 return true;
             }
         }
+        return false;
+    }
+
+    private boolean isContainingUppercase(String s) {
+        for (char ch : s.toCharArray()) {
+            if (Character.isUpperCase(ch)) {
+                return true;
+            }
+        }
+
         return false;
     }
 }
