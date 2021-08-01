@@ -7,6 +7,13 @@ public class PasswordStrengthMeter {
         if (s.length() < MIN_LEN_OF_PASSWORD) {
             return PasswordStrength.NORMAL;
         }
+
+        if (!isContainsNum(s)) return PasswordStrength.NORMAL;
+
+        return PasswordStrength.STRONG;
+    }
+
+    private boolean isContainsNum(String s) {
         boolean containsNum = false;
         for (char ch : s.toCharArray()) {
             if ('0' <= ch && ch <= '9') {
@@ -14,9 +21,6 @@ public class PasswordStrengthMeter {
                 break;
             }
         }
-
-        if (!containsNum) return PasswordStrength.NORMAL;
-
-        return PasswordStrength.STRONG;
+        return containsNum;
     }
 }
