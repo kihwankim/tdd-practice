@@ -14,13 +14,11 @@ public class PasswordStrengthMeter {
     }
 
     private boolean isContainsNum(String s) {
-        boolean containsNum = false;
         for (char ch : s.toCharArray()) {
             if ('0' <= ch && ch <= '9') {
-                containsNum = true;
-                break;
+                return true;
             }
         }
-        return containsNum;
+        return false;
     }
 }
