@@ -24,4 +24,31 @@ class ExpiryDateCalculatorTest {
         assertEquals(LocalDate.of(2021, 3, 1), expiryDate);
         assertEquals(LocalDate.of(2022, 1, 1), otherExpireDate);
     }
+
+    @Test
+    void 납부일과_한달_뒤_일자가_같지_않는_경우() throws Exception {
+        // given
+        LocalDate payDay = LocalDate.of(2021, 1, 31);
+        int payAmmount = 10_000;
+
+        // when
+        LocalDate expiryDate = cal.calculateExpiryDate(payDay, payAmmount);
+
+        // then
+        assertEquals(LocalDate.of(2021, 2, 28), expiryDate);
+    }
+
+    @Test
+    void 이_만원_납부하는_경우() throws Exception {
+        // given
+        LocalDate payDay = LocalDate.of(2021, 1, 31);
+        int payAmount = 20_000;
+
+        // when
+        LocalDate expiryDate = cal.calculateExpiryDate(payDay, payAmount);
+
+
+        // then
+        assertEquals(LocalDate.of(2021, 3, 31), expiryDate);
+    }
 }
