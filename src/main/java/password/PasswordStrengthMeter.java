@@ -5,12 +5,18 @@ public class PasswordStrengthMeter {
 
     public PasswordStrength meter(String s) {
         if (s == null || s.isEmpty()) return PasswordStrength.INVALID;
-        if (s.length() < MIN_LEN_OF_PASSWORD) {
-            return PasswordStrength.NORMAL;
+
+        boolean isLengthEnough = s.length() >= MIN_LEN_OF_PASSWORD;
+        boolean isContainsNum = isContainsNum(s);
+        boolean isContainsUpp = isContainingUppercase(s);
+
+        if (isLengthEnough && !isContainsNum && !isContainsUpp) {
+            return PasswordStrength.WEAK;
         }
 
-        if (!isContainsNum(s)) return PasswordStrength.NORMAL;
-        if (!isContainingUppercase(s)) return PasswordStrength.NORMAL;
+        if (!isLengthEnough) return PasswordStrength.NORMAL;
+        if (!isContainsNum) return PasswordStrength.NORMAL;
+        if (!isContainsUpp) return PasswordStrength.NORMAL;
 
         return PasswordStrength.STRONG;
     }

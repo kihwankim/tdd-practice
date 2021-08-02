@@ -87,4 +87,17 @@ class PasswordStrengthMeterTest {
         // then
         assertEquals(PasswordStrength.NORMAL, result);
     }
+
+    @Test
+    @DisplayName("길이가 8글자 이상인 조건만 충족하는 경우")
+    void meetOnlyLengthCriteria_Then_Weak() throws Exception {
+        // given
+        String password = "abdefghi";
+
+        // when
+        PasswordStrength result = this.meter.meter(password);
+
+        // then
+        assertEquals(PasswordStrength.WEAK, result);
+    }
 }
