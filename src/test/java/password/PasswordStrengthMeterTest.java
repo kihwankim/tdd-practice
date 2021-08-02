@@ -113,4 +113,17 @@ class PasswordStrengthMeterTest {
         // then
         assertEquals(PasswordStrength.WEAK, result);
     }
+
+    @Test
+    @DisplayName("아무 조건도 충족하지 않는 경우")
+    void meetsNoCriteria_Then_Weak() throws Exception {
+        // given
+        String password = "abc";
+
+        // when
+        PasswordStrength result = this.meter.meter(password);
+
+        // then
+        assertEquals(PasswordStrength.WEAK, result);
+    }
 }

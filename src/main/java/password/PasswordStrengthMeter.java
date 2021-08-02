@@ -11,7 +11,7 @@ public class PasswordStrengthMeter {
         if (isContainsNum(s)) metCounts++;
         if (isContainingUppercase(s)) metCounts++;
 
-        if (metCounts == 1) return PasswordStrength.WEAK;
+        if (metCounts <= 1) return PasswordStrength.WEAK;
         if (metCounts == 2) return PasswordStrength.NORMAL;
 
         return PasswordStrength.STRONG;
