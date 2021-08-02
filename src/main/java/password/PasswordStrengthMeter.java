@@ -10,9 +10,9 @@ public class PasswordStrengthMeter {
         boolean isContainsNum = isContainsNum(s);
         boolean isContainsUpp = isContainingUppercase(s);
 
-        if (isLengthEnough && !isContainsNum && !isContainsUpp) {
-            return PasswordStrength.WEAK;
-        }
+        if (isLengthEnough && !isContainsNum && !isContainsUpp) return PasswordStrength.WEAK;
+        if (!isLengthEnough && isContainsNum && !isContainsUpp) return PasswordStrength.WEAK;
+        if (!isLengthEnough && !isContainsNum && isContainsUpp) return PasswordStrength.WEAK;
 
         if (!isLengthEnough) return PasswordStrength.NORMAL;
         if (!isContainsNum) return PasswordStrength.NORMAL;

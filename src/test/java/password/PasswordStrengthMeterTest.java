@@ -100,4 +100,17 @@ class PasswordStrengthMeterTest {
         // then
         assertEquals(PasswordStrength.WEAK, result);
     }
+
+    @Test
+    @DisplayName("대문자 포함 조건만 충족하는 경우")
+    void meetsOnlyUpperCriteria_Then_Weak() throws Exception {
+        // given
+        String password = "ABZEF";
+
+        // when
+        PasswordStrength result = this.meter.meter(password);
+
+        // then
+        assertEquals(PasswordStrength.WEAK, result);
+    }
 }
