@@ -6,17 +6,13 @@ public class PasswordStrengthMeter {
     public PasswordStrength meter(String s) {
         if (s == null || s.isEmpty()) return PasswordStrength.INVALID;
 
-        boolean isLengthEnough = s.length() >= MIN_LEN_OF_PASSWORD;
-        boolean isContainsNum = isContainsNum(s);
-        boolean isContainsUpp = isContainingUppercase(s);
+        int metCounts = 0;
+        if (s.length() >= MIN_LEN_OF_PASSWORD) metCounts++;
+        if (isContainsNum(s)) metCounts++;
+        if (isContainingUppercase(s)) metCounts++;
 
-        if (isLengthEnough && !isContainsNum && !isContainsUpp) return PasswordStrength.WEAK;
-        if (!isLengthEnough && isContainsNum && !isContainsUpp) return PasswordStrength.WEAK;
-        if (!isLengthEnough && !isContainsNum && isContainsUpp) return PasswordStrength.WEAK;
-
-        if (!isLengthEnough) return PasswordStrength.NORMAL;
-        if (!isContainsNum) return PasswordStrength.NORMAL;
-        if (!isContainsUpp) return PasswordStrength.NORMAL;
+        if (metCounts == 1) return PasswordStrength.WEAK;
+        if (metCounts == 2) return PasswordStrength.NORMAL;
 
         return PasswordStrength.STRONG;
     }
