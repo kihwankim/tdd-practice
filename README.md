@@ -1,4 +1,4 @@
-# tdd-practice
+# TDD practice
 
 ## 암호 검사기
 
