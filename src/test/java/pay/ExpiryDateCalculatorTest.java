@@ -93,4 +93,23 @@ class ExpiryDateCalculatorTest {
         assertExpiryDate(payDataSecondMonth, LocalDate.of(THIS_YEAR, 3, 30));
         assertExpiryDate(firstOneMonthLaterAndPayOneMore, LocalDate.of(THIS_YEAR, 7, 31));
     }
+
+    @Test
+    void 이만원_이상_납부하면_비례해서_만료일_계산() throws Exception {
+        // given
+        PayData payDateTwentyTho = PayData.builder()
+                .billingDate(LocalDate.of(THIS_YEAR, 3, 1))
+                .payAmount(20_000)
+                .build();
+        PayData payDateThirtyTho = PayData.builder()
+                .billingDate(LocalDate.of(THIS_YEAR, 3, 1))
+                .payAmount(30_000)
+                .build();
+
+        // when
+
+        // then
+        assertExpiryDate(payDateTwentyTho, LocalDate.of(THIS_YEAR, 5, 1));
+        assertExpiryDate(payDateThirtyTho, LocalDate.of(THIS_YEAR, 6, 1));
+    }
 }
