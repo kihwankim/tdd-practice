@@ -9,11 +9,13 @@ import java.time.LocalDate;
 @Getter
 @NoArgsConstructor
 public class PayData {
+    private LocalDate firstBillingDate;
     private LocalDate billingDate;
     private int payAmount;
 
     @Builder
-    public PayData(LocalDate billingDate, int payAmount) {
+    public PayData(LocalDate firstBillingDate, LocalDate billingDate, int payAmount) {
+        this.firstBillingDate = firstBillingDate;
         this.billingDate = billingDate;
         this.payAmount = payAmount;
     }
