@@ -3,6 +3,7 @@ package pay;
 import pay.dto.PayData;
 
 import java.time.LocalDate;
+import java.time.YearMonth;
 
 public class ExpiryDateCalculator {
 
@@ -20,6 +21,10 @@ public class ExpiryDateCalculator {
             LocalDate canditateExp = payData.getBillingDate().plusMonths(usingMonth);
 
             if (payData.getFirstBillingDate().getDayOfMonth() != canditateExp.getDayOfMonth()) {
+                if (YearMonth.from(canditateExp).lengthOfMonth() < payData.getFirstBillingDate().getDayOfMonth()) {
+                    return canditateExp.withDayOfMonth(YearMonth.from(canditateExp).lengthOfMonth());
+                }
+
                 return canditateExp.withDayOfMonth(payData.getFirstBillingDate().getDayOfMonth());
             }
         }
