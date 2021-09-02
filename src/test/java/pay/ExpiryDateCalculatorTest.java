@@ -122,9 +122,23 @@ class ExpiryDateCalculatorTest {
                 .payAmount(20_000)
                 .build();
 
+        PayData payDataSecond = PayData.builder()
+                .firstBillingDate(LocalDate.of(THIS_YEAR, 3, 31))
+                .billingDate(LocalDate.of(THIS_YEAR, 4, 30))
+                .payAmount(30_000)
+                .build();
+
+        PayData paydata40_000WonAndPayFeb = PayData.builder()
+                .firstBillingDate(LocalDate.of(THIS_YEAR, 1, 31))
+                .billingDate(LocalDate.of(THIS_YEAR, 2, 28))
+                .payAmount(40_000)
+                .build();
+
         // when
 
         // then
         assertExpiryDate(payData, LocalDate.of(THIS_YEAR, 4, 30));
+        assertExpiryDate(payDataSecond, LocalDate.of(THIS_YEAR, 7, 31));
+        assertExpiryDate(paydata40_000WonAndPayFeb, LocalDate.of(THIS_YEAR, 6, 30));
     }
 }
