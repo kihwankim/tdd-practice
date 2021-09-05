@@ -8,13 +8,14 @@ import java.time.YearMonth;
 public class ExpiryDateCalculator {
 
     private static final int ONE_MONTH_FEE = 10_000;
+    private static final int ONE_YEAR_FEE = 10 * ONE_MONTH_FEE;
 
     public LocalDate calculateExpiryDate(PayData payData) {
         if (payData == null) {
             throw new IllegalArgumentException();
         }
 
-        int addedMonths = payData.getPayAmount() / ONE_MONTH_FEE;
+        int addedMonths = payData.getPayAmount() == ONE_YEAR_FEE ? 12 : payData.getPayAmount() / ONE_MONTH_FEE;
 
         if (payData.getFirstBillingDate() != null) {
             return expireDateUsingFirstBillingDate(payData, addedMonths);

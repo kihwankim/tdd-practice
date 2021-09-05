@@ -141,4 +141,18 @@ class ExpiryDateCalculatorTest {
         assertExpiryDate(payDataSecond, LocalDate.of(THIS_YEAR, 7, 31));
         assertExpiryDate(paydata40_000WonAndPayFeb, LocalDate.of(THIS_YEAR, 6, 30));
     }
+
+    @Test
+    void 십만원_납부하면_1년_제공() throws Exception {
+        // given
+        PayData pay100_000Won = PayData.builder()
+                .billingDate(LocalDate.of(THIS_YEAR, 1, 28))
+                .payAmount(100_000)
+                .build();
+
+        // when
+
+        // then
+        assertExpiryDate(pay100_000Won, LocalDate.of(THIS_YEAR + 1, 1, 28));
+    }
 }
